@@ -3,7 +3,7 @@
 # Contributor: Tom Newsom <Jeepster@gmx.co.uk>
 
 pkgbase="sqlite"
-pkgname=('sqlite' 'sqlite-tcl' 'sqlite-doc' 'sqlite-analyzer')
+pkgname=('sqlite' 'sqlite-doc')
 _srcver=3220000
 _docver=${_srcver}
 #_docver=3080001
@@ -13,7 +13,7 @@ pkgdesc="A C library that implements an SQL database engine"
 arch=('x86_64')
 license=('custom:Public Domain')
 url="http://www.sqlite.org/"
-makedepends=('tcl' 'readline' 'zlib')
+makedepends=('readline' 'zlib')
 source=(https://www.sqlite.org/2018/sqlite-src-${_srcver}.zip
         https://www.sqlite.org/2018/sqlite-doc-${_docver}.zip
         license.txt)
@@ -46,10 +46,11 @@ build() {
 	--enable-fts5 \
 	--enable-rtree \
 	--enable-json1 \
+	--disable-tcl \
 	TCLLIBDIR=/usr/lib/sqlite$pkgver
   make
   # build additional tools
-  make showdb showjournal showstat4 showwal sqldiff sqlite3_analyzer
+  make showdb showjournal showstat4 showwal sqldiff
 }
 
 package_sqlite() {
@@ -70,10 +71,6 @@ package_sqlite() {
 
   # license - no linking required because pkgbase=pkgname
   install -D -m644 ${srcdir}/license.txt ${pkgdir}/usr/share/licenses/${pkgbase}/license.txt
-
-  # split out tcl extension
-  mkdir $srcdir/tcl
-  mv $pkgdir/usr/lib/sqlite* $srcdir/tcl
 }
 
 package_sqlite-tcl() {
