@@ -4,7 +4,7 @@
 # Contributor: Sarah Hay <sarah@archlinux.org>
 
 pkgbase=gpgme
-pkgname=(gpgme qgpgme python-gpgme python2-gpgme)
+pkgname=(gpgme)
 pkgver=1.10.0
 pkgrel=2
 pkgdesc="A C wrapper library for GnuPG"
@@ -37,9 +37,9 @@ package_gpgme() {
   make DESTDIR="${pkgdir}" install
 
   # split qgpgme
-  rm -r "${pkgdir}"/usr/include/{qgpgme,QGpgME}/
-  rm -r "${pkgdir}"/usr/lib/{cmake/QGpgme/,libqgpgme.*}
-  rm -r "${pkgdir}"/usr/lib/python*
+  #rm -r "${pkgdir}"/usr/include/{qgpgme,QGpgME}/
+  #rm -r "${pkgdir}"/usr/lib/{cmake/QGpgme/,libqgpgme.*}
+  #rm -r "${pkgdir}"/usr/lib/python*
 }
 
 package_qgpgme() {
