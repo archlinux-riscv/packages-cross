@@ -14,9 +14,11 @@ makedepends=('flex' 'w3m' 'docbook-xml>=4.4' 'docbook-xsl')
 backup=(etc/security/{access.conf,group.conf,limits.conf,namespace.conf,namespace.init,pam_env.conf,time.conf} etc/default/passwd etc/environment)
 source=(http://linux-pam.org/library/Linux-PAM-$pkgver.tar.bz2
         https://sources.archlinux.org/other/pam_unix2/pam_unix2-2.9.1.tar.bz2
+        pam_unix2-remove-includes.patch
         pam_unix2-glibc216.patch)
 md5sums=('da4b2289b7cfb19583d54e9eaaef1c3a'
          'da6a46e5f8cd3eaa7cbc4fc3a7e2b555'
+         '49cfdcde30f3362f495c7d83d7f1c8c3'
          'dac109f68e04a4df37575fda6001ea17')
 
 options=('!emptydirs')
@@ -27,6 +29,7 @@ prepare () {
   # fix pam_unix2 building
   cd $srcdir/pam_unix2-2.9.1
   patch -Np1 -i "${srcdir}/pam_unix2-glibc216.patch"
+  patch -Np1 -i "${srcdir}/pam_unix2-remove-includes.patch"
 }
 
 build() {

@@ -1,0 +1,11 @@
+--- pam_unix2-2.9.1/src/unix_passwd.c	2012-04-03 17:24:51.000000000 +0400
++++ pam_unix2-2.9.1-fixed/src/unix_passwd.c	2018-03-18 21:28:49.642404040 +0300
+@@ -53,8 +53,6 @@
+ #include <rpc/types.h>
+ #include <nss.h>
+ #include <syslog.h>
+-#include <rpcsvc/yp_prot.h>
+-#include <rpcsvc/ypclnt.h>
+ 
+ #define PAM_SM_PASSWORD
+ #include <security/pam_modules.h>
