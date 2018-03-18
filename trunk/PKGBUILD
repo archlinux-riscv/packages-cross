@@ -19,6 +19,7 @@ md5sums=('1da9ea3c27b3858fa85c5f4466003e44')
 
 build() {
   cd $pkgname-$pkgver
+  CFLAGS="$CFLAGS -lcap"
   ./configure --prefix=/usr
   make -j1
 }
