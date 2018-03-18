@@ -39,6 +39,7 @@ prepare() {
 
 build() {
   cd $pkgbase
+  CFLAGS="$CFLAGS -lcap"
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
       --libexecdir=/usr/lib/dbus-1.0 --with-dbus-user=dbus \
       --with-system-pid-file=/run/dbus/pid \
@@ -47,7 +48,8 @@ build() {
       --enable-inotify --disable-static \
       --disable-verbose-mode --disable-asserts \
       --with-systemdsystemunitdir=/usr/lib/systemd/system \
-      --enable-systemd --enable-user-session
+      --enable-systemd --enable-user-session \
+      --without-x --disable-tests
   make
 }
 
