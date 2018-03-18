@@ -18,7 +18,7 @@ validpgpkeys=('343C2FF0FBEE5EC2EDBEF399F3599FF828C67298')   # Niels Möller
 build() {
   cd "${pkgname}-${pkgver}"
 
-  ./configure --build=${CHOST} \
+  ./configure --build=${CLFS_HOST} \
     --prefix=/usr \
     --enable-cxx \
     --enable-fat
