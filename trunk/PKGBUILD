@@ -27,6 +27,7 @@ sha256sums=('4f8105d7f3bf758d58da3058b3cbd66c0ca81492b2dafe8ae7c049cc9e939e97'
 build() {
   cd "${srcdir}"/$pkgname-${pkgver}
 
+  CFLAGS="$CFLAGS -lcap"
   ./configure \
     --prefix=/usr \
     --sbindir=/usr/bin \
