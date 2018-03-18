@@ -24,7 +24,7 @@ validpgpkeys=('58E0C111E39F5408C5D3EC76C1A60EACE707FDA5') # Werner Lemberg <wl@g
 
 build() {
   cd $srcdir/$pkgname-$pkgver
-  ./configure --prefix=/usr --with-x --with-appresdir=/usr/share/X11/app-defaults
+  ./configure --prefix=/usr --with-x --with-appresdir=/usr/share/X11/app-defaults --with-doc=no
   make
 }
 
