@@ -5,9 +5,9 @@
 # NOTE: valgrind requires rebuilt with each major glibc version
 
 pkgname=glibc
-pkgver=2.25
-pkgrel=5
-_commit=adc7e06fb412a2a1ee52f8cb788caf436335b9f3  # release/2.25/master
+pkgver=2.26
+pkgrel=1
+_commit=2f626de717a86be3a1fe39e779f0b179e13ccfbb  # from freedom-u-sdk/riscv-gnu-toolchain/riscv-glibc
 pkgdesc='GNU C Library'
 arch=(i686 x86_64)
 url='http://www.gnu.org/software/libc'
@@ -21,7 +21,7 @@ backup=(etc/gai.conf
         etc/nscd.conf)
 options=(!strip staticlibs)
 install=glibc.install
-source=(git+https://sourceware.org/git/glibc.git#commit=${_commit}
+source=(git+https://github.com/riscv/riscv-glibc.git#commit=${_commit}
         locale.gen.txt
         locale-gen)
 md5sums=('SKIP'
@@ -30,6 +30,7 @@ md5sums=('SKIP'
 
 prepare() {
   mkdir glibc-build
+  mv riscv-glibc ${pkgname}
   cd ${pkgname}
 }
 
@@ -53,7 +54,7 @@ build() {
       --prefix=/usr \
       --libdir=/usr/lib \
       --libexecdir=/usr/lib \
-      --with-headers=/usr/include \
+      --with-headers=$RISCV/sysroot/usr/include \
       --with-bugurl=https://bugs.archlinux.org/ \
       --enable-add-ons \
       --enable-obsolete-rpc \
@@ -63,7 +64,6 @@ build() {
       --enable-stackguard-randomization \
       --enable-stack-protector=strong \
       --enable-lock-elision \
-      --enable-multi-arch \
       --disable-werror
 
   # build libraries with fortify disabled
