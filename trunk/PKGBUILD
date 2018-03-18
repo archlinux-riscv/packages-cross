@@ -81,7 +81,7 @@ _validate_tag() {
 prepare() {
   cd "$pkgbase"
 
-  _validate_tag || return
+  #_validate_tag || return
 
   local _commit
   for _commit in "${_backports[@]}"; do
@@ -113,7 +113,7 @@ build() {
     --sysconfdir=/etc
 
     --enable-lz4
-    --enable-gnuefi
+#    --enable-gnuefi
     --disable-audit
     --disable-ima
 
@@ -126,10 +126,19 @@ build() {
     --with-rpmmacrosdir=no
     # TODO(dreisner): consider changing this to unified
     --with-default-hierarchy=hybrid
+    --build=${CLFS_HOST}
+    --host=${CLFS_TARGET}
+    --disable-libcryptsetup
+    --disable-seccomp
+    --disable-microhttpd
+    --disable-gnutls
+    --disable-xkbcommon
+    --disable-tests
   )
 
   ./configure "${configure_options[@]}"
 
+  cp ../../parse-util.c src/basic/
   make
 }
 
@@ -190,7 +199,7 @@ package_systemd() {
   chmod 0750     "$pkgdir"/usr/share/polkit-1/rules.d
 
   # we'll create this on installation
-  rmdir "$pkgdir/var/log/journal/remote"
+  #rmdir "$pkgdir/var/log/journal/remote"
 
   # ship default policy to leave services disabled
   echo 'disable *' >"$pkgdir"/usr/lib/systemd/system-preset/99-default.preset
