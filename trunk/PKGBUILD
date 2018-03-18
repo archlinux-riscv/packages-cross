@@ -25,11 +25,13 @@ validpgpkeys=('6645B0A8C7005E78DB1D7864F99FFE0FEAE999BD'  # Allan McRae <allan@a
 source=(https://sources.archlinux.org/other/pacman/$pkgname-$pkgver.tar.gz{,.sig}
         pacman.conf.i686
         pacman.conf.x86_64
+        pacman.conf.riscv64
         makepkg.conf)
 sha256sums=('dfd36086ad68564bcd977f4a1fafe51dd328acd4a95093ac4bf1249be9c41f0e'
             'SKIP'
             'cb76123c15ca9f2a467ebecb72af611f618fcc8431cf8b437d40fa2e61c23590'
             '95b3b2416402059cf6acf3e046082e7ce261e2b88629231dbf579a4200d8a63b'
+            'cb76123c15ca9f2a467ebecb72af611f618fcc8431cf8b437d40fa2e61c23590'
             '6066d67d818ee36760bf121c76d5019130f7875b3e5ed179b319b810a3a9685b')
 
 
