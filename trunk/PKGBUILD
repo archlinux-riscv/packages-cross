@@ -18,6 +18,7 @@ validpgpkeys=('3690C240CE51B4670D30AD1C38EE757D69184620')
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}
 
+	CFLAGS="$CFLAGS -Wno-error=implicit-fallthrough"
 	./configure --prefix=/usr \
 		--disable-rpath \
 		--enable-werror
