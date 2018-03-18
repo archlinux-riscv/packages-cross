@@ -24,7 +24,7 @@ md5sums=('3d1147cae66e2959ea5441b183de1b1c'
 build() {
   cd "$pkgname-$pkgver"
 
-  ./configure --prefix=/usr
+  ./configure --prefix=/usr --with-libssl-prefix=$SYSROOT
   make
 }
 
