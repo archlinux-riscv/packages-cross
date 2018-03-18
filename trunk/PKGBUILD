@@ -24,6 +24,7 @@ prepare() {
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
+	CFLAGS="$CFLAGS -lcap"
 	./configure --prefix=/usr --sbindir=/usr/bin 
 	make
 }
