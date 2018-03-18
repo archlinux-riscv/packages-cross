@@ -34,6 +34,7 @@ sha256sums=('1a51b16fa9cd51d26ef9ab52d2f1de12403b810fc8252bf7d478df91b3cddf11'
 build() {
   cd "$pkgbase-$pkgver"
 
+  CFLAGS="${CFLAGS} -lcap"
   ./configure --prefix=/usr \
               --libdir=/usr/lib \
               --bindir=/usr/bin \
@@ -45,7 +46,8 @@ build() {
               --enable-chfn-chsh \
               --enable-write \
               --enable-mesg \
-              --with-python=3
+              --without-systemd \
+              --without-python
 
   make
 }
@@ -78,7 +80,7 @@ package_util-linux() {
   install -m644 "$srcdir/pam-su" "$pkgdir/etc/pam.d/su-l"
 
   # TODO(dreisner): offer this upstream?
-  sed -i '/ListenStream/ aRuntimeDirectory=uuidd' "$pkgdir/usr/lib/systemd/system/uuidd.socket"
+  #sed -i '/ListenStream/ aRuntimeDirectory=uuidd' "$pkgdir/usr/lib/systemd/system/uuidd.socket"
 
   # adjust for usrmove
   # TODO(dreisner): fix configure.ac upstream so that this isn't needed
