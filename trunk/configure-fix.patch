@@ -1,0 +1,11 @@
+--- ncurses-6.1/configure	2018-01-20 03:27:18.000000000 +0300
++++ ncurses-6.1-fixed/configure	2018-03-18 21:39:42.870127901 +0300
+@@ -2991,7 +2991,7 @@
+ 
+ 		save_CPPFLAGS="$CPPFLAGS"
+ 		eval cf_includedir=${includedir}
+-		CPPFLAGS="$CPPFLAGS -I${cf_includedir}"
++		#CPPFLAGS="$CPPFLAGS -I${cf_includedir}"
+ 
+ cat >conftest.$ac_ext <<_ACEOF
+ #line 2997 "configure"

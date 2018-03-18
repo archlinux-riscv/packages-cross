@@ -13,14 +13,16 @@ license=(MIT)
 depends=(glibc gcc-libs)
 provides=(libncurses++w.so libformw.so libmenuw.so libpanelw.so libncursesw.so)
 #source=(http://invisible-mirror.net/archives/ncurses/current/ncurses-${_pkgver}.tgz{,.asc})
-source=(https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$pkgver.tar.gz{,.sig})
+source=(https://ftp.gnu.org/pub/gnu/ncurses/ncurses-$pkgver.tar.gz{,.sig} configure-fix.patch)
 md5sums=('98c889aaf8d23910d2b92d65be2e737a'
-         'SKIP')
+         'SKIP'
+         'a7f5e87f6b364290cd305817adfa096c')
 validpgpkeys=('C52048C0C0748FEE227D47A2702353E0F7E48EDB')  # Thomas Dickey
 
 build() {
   cd $pkgname-$pkgver
 
+  patch -Np1 -i "${srcdir}/configure-fix.patch"
   ./configure --prefix=/usr --mandir=/usr/share/man \
     --with-pkg-config-libdir=/usr/lib/pkgconfig \
     --with-shared --with-normal --without-debug --without-ada \
