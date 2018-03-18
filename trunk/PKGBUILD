@@ -12,7 +12,7 @@ arch=('x86_64')
 url="https://www.sudo.ws/sudo/"
 license=('custom')
 groups=('base-devel')
-depends=('glibc' 'libgcrypt' 'pam' 'libldap')
+depends=('glibc' 'libgcrypt' 'pam')
 backup=('etc/sudoers' 'etc/pam.d/sudo')
 install=$pkgname.install
 source=(https://www.sudo.ws/sudo/dist/$pkgname-$_sudover.tar.gz{,.sig}
@@ -40,7 +40,7 @@ build() {
     --enable-tmpfiles.d \
     --with-pam \
     --with-sssd \
-    --with-ldap \
+    --without-ldap \
     --with-ldap-conf-file=/etc/openldap/ldap.conf \
     --with-env-editor \
     --with-passprompt="[sudo] password for %p: " \
